@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <style>
+            p.small {
+              line-height: 0.7;
+            }
+            
+            p.big {
+              line-height: 1.8;
+            }
+        </style>
+    </head>
+    <body bgcolor="FFD733">
+        <center><h1>Algorithm Overview</h1></center>
+        <div>
+        <p>
+            <h3>
+                The algorithm takes the input from the user and gives the user the output in the form of a set of equations representing the set of best fit lines for that set of points. The input points are put into a text file for plotting in the visualization. after taking in the set of points it sorts the set of points based on the x value in ascending order. we then parse through the set of points, we store the minimum error for each possible interval of points as well as the slope and intercept of the line of best fit for that interval. we use these values to solve for all the points satisfying i<=N using dynamic programming and storing them in a memoization array(we use the value stored at the index i to calculate the value to be stored in index i+1). we also find the partition points which are the points at which a new line of best fit will be created and these are stored in the segments array. Once we find the optimum segments, we calculate optimum error for the given penalty and the final segment equations with start and ending points using the stored slopes and intercept values, and the error for each segment. An output text file will contain the exact starting and ending points for each of the segments by projecting the points in the input onto the line segment for the purpose of ease of visualization.            </h3>
+        </p>
+        </div>
+        <hr>
+        <center><h1>Results of Sample test cases</h1></center>
+        <div>
+            <p>
+                Optimum solution is 26.966663<br>                                                                                                     
+                The segments are :<br>                                                                                                      
+                <br>Segment y = -8.000000 * x + -2.666667 from (1.000000,-11.000000) to (3.000000,-27.000000) with square error 0.666667.                  
+                <br>Segment y = 3.300000 * x + -2.400000 from (4.000000,12.000000) to (7.000000,22.000000) with square error 6.299997. 
+                <br><img src="sample_test_case_visualizations/7points.png" style="width:340px;height:300px;">
+            </p>
+            <br><br>
+            <p>
+                Optimum solution is 680.585754<br>                                                                                                    
+                The segments are :<br>                                                                                                                
+                <br>Segment y = -8.500000 * x + -1.100000 from (1.000000,-9.000000) to (5.000000,-45.000000) with square error 14.699999.                  
+                <br>Segment y = 3.600000 * x + -1.800000 from (6.000000,18.000000) to (10.000000,32.000000) with square error 56.400021.                   
+                <br>Segment y = 3.000000 * x + 17.000000 from (11.000000,50.000000) to (12.000000,53.000000) with square error 0.000000.                   
+                <br>Segment y = 9.000000 * x + -69.333336 from (13.000000,48.000000) to (15.000000,66.000000) with square error 0.666667.                  
+                <br>Segment y = 2.700000 * x + 7.400000 from (16.000000,51.000000) to (20.000000,63.000000) with square error 11.099992.                   
+                <br>Segment y = 2.100000 * x + 38.100002 from (21.000000,84.000000) to (25.000000,93.000000) with square error 17.100004.                  
+                <br>Segment y = 0.400000 * x + 16.799999 from (26.000000,27.000000) to (30.000000,31.000000) with square error 20.400005.                  
+                <br>Segment y = 3.900000 * x + -63.500000 from (31.000000,60.000000) to (35.000000,75.000000) with square error 22.699982.                 
+                <br>Segment y = -0.500000 * x + -37.400002 from (36.000000,-55.000000) to (40.000000,-55.000000) with square error 24.700001.              
+                <br>Segment y = -6.828571 * x + -55.123821 from (41.000000,-335.000000) to (46.000000,-371.000000) with square error 12.819075. 
+                <br><img src="sample_test_case_visualizations/46points.png" style="width:340px;height:300px;">
+            </p>
+            <br><br>
+            <p>
+            Optimum solution is 3524.817627<br>                                                                                                        
+            The segments are :<br>                                                                                                               
+            <br>Segment y = -8.045455 * x + 0.909091 from (1.000000,-3.000000) to (11.000000,-88.000000) with square error 162.318176.                 
+            <br>Segment y = 3.756635 * x + 7.884810 from (12.000000,49.000000) to (33.000000,129.000000) with square error 334.872986.                 
+            <br>Segment y = 1.954545 * x + 20.681818 from (34.000000,90.000000) to (44.000000,104.000000) with square error 60.681877.                 
+            <br>Segment y = 2.536364 * x + 39.545456 from (45.000000,148.000000) to (55.000000,177.000000) with square error 90.900078.                
+            <br>Segment y = 0.654545 * x + 19.981819 from (56.000000,60.000000) to (66.000000,65.000000) with square error 63.781826.                  
+            <br>Segment y = 2.381818 * x + -27.672741 from (67.000000,131.000000) to (77.000000,153.000000) with square error 33.600006.               
+            <br>Segment y = -0.554545 * x + -56.336361 from (78.000000,-99.000000) to (88.000000,-105.000000) with square error 96.718155.             
+            <br>Segment y = -8.045455 * x + -0.818182 from (89.000000,-713.000000) to (99.000000,-798.000000) with square error 70.681419.             
+            <br>Segment y = -8.836364 * x + -25.636364 from (100.000000,-913.000000) to (110.000000,-1000.000000) with square error 117.781815.        
+            <br>Segment y = 8.281818 * x + -43.418236 from (111.000000,881.000000) to (121.000000,961.000000) with square error 99.445000.             
+            <br>Segment y = 8.022058 * x + 14.661765 from (122.000000,995.000000) to (138.000000,1126.000000) with square error 194.036346.
+            <br><img src="sample_test_case_visualizations/138points.png" style="width:340px;height:300px;">
+            </p>
+            <br><br>
+        </div>
+        <hr>
+        <center><h1>Memory usage and time analysis</h1></center>
+        The code runs in O(n<sup>3</sup>) time
+        <p>
+            First test case:<br>
+            296 Microseconds and 3716 KB
+        </p>
+        <p>
+            Second test case:<br>
+            1447 Microseconds and 4184 KB
+        </p>
+        <p>
+            Third test case:<br>
+            13265 Microseconds and 5324 KB
+        </p>
+        <hr>
+        <center><h1>Results of Experimentation with different penalty values (C Values)</h1></center>
+        <div>
+            <p>
+                Here, we take a look at how changing the C value for our algorithm or the "penalty" affects the number of best lines created. We can see below that as the penalty increases, the code gives us lesser and lesser lines so as to compensate for the high penalty.
+                <br>
+                <img src="penalty_variations/pen5.png" style="width:340px;height:300px;">
+                <img src="penalty_variations/pen15.png" style="width:340px;height:300px;">
+                <img src="penalty_variations/pen25.png" style="width:340px;height:300px;">
+                <img src="penalty_variations/pen80.png" style="width:340px;height:300px;">
+            </p>
+        </div>
+        <hr>
+        <center><h1>Footnote</h1></center>
+        <div>
+            <p>
+                <h3>
+                <i>Authors:</i> <br>
+
+                Anurag Sidharth Aribandi 2018A7PS1218H <br>
+                Varun Narayanan 2018A7PS1226H <br>
+                Anish Sai Mitta 2018A7PS1221H <br>
+                Himnish Kapoor 2018A7PS1215H <br>
+                </h3>
+            </p>
+        </div>
+    </body>
+</html>
